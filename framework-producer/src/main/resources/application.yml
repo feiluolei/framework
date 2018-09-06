@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: producer-service
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaulZone: http://peer3:8733/eureka/
+      register-with-eureka: false
+      fetch-registry: false
