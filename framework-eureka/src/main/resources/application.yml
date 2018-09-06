@@ -1,0 +1,42 @@
+---
+#HA 版: 通过运行多个实例并请求他们相互注册, 通过defaultZone 注定本实例要注册到哪些其他的节点
+spring:
+  profiles: peer1
+  application:
+    name: eureka-server
+server:
+  port: 8731
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer2:8732/eureka/,http://peer3:8733/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+
+---
+spring:
+  profiles: peer2
+  application:
+    name: eureka-server
+server:
+  port: 8732
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8731/eureka/,http://peer3:8733/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+
+---
+spring:
+  profiles: peer3
+  application:
+    name: eureka-server
+server:
+  port: 8733
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8731/eureka/,http://peer2:8732/eureka/
+    register-with-eureka: false
+    fetch-registry: false
