@@ -1,0 +1,15 @@
+spring:
+  redis:
+    host: 192.168.226.130
+    port: 6379
+    database: 0
+    password: 123456
+    timeout:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait:
+        max-idle: 8
+        min-idle: 0
+logging:
+  config: classpath:log/logback.xml
